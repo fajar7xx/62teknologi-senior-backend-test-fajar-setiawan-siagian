@@ -15,20 +15,25 @@ return new class extends Migration
         Schema::create('businesses', function (Blueprint $table) {
             $table->id();
             $table->string('alias')->unique();
-            $table->string('display_phone', 20)->unique();
-            $table->float('distance', 10, 12);
+            $table->string('name');
             $table->string('image_url');
             $table->boolean('is_closed')->default(false);
-            $table->string('name');
-            $table->string('phone', 20)->unique();
-            $table->float('price', 10, 2)->default(0);
-            $table->float('rating', 2, 2)->default(0);
-            $table->integer('review_count')->default(0);
-            $table->json('transactions')->nullable();
             $table->string('url')->nullable();
-            $table->integer('total');
+            $table->integer('review_count')->default(0);
+            $table->float('rating', 2, 2)->default(0);
+            $table->double('lattitude', 3, 15);
+            $table->double('longtitude', 3, 15);
+            $table->string('price');
+            $table->string('phone', 20)->unique();
+            $table->string('display_phone', 20)->unique();
+            $table->double('distance', 10, 15);
             $table->timestamps();
             $table->softDeletes();
+
+
+            // indexing
+            $table->index('alias');
+            $table->index('name');
         });
         Schema::enableForeignKeyConstraints();
     }

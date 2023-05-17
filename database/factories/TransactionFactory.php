@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Transaction>
  */
-class CategoryFactory extends Factory
+class TransactionFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,10 +16,8 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
-        $category = fake()->unique()->sentence(3);
         return [
-            'alias' => \Str::slug($category),
-            'title' => $category
+            //
         ];
     }
 }

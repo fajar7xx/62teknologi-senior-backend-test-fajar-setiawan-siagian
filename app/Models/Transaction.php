@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Category extends Model
+class Transaction extends Model
 {
     use HasFactory;
 
@@ -15,7 +15,7 @@ class Category extends Model
      *
      * @var string
      */
-    protected $table = 'categories';
+    protected $table = 'transactions';
 
     /**
      * The attributes that are mass assignable.
@@ -23,17 +23,16 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-        'alias',
-        'title'
+        'name'
     ];
 
     /**
-     * the business that belong to the category
+     * the business that belong to the transaction
      *
      * @return BelongsToMany
      */
-    public function Business(): BelongsToMany
+    public function Businesses(): BelongsToMany
     {
-        return $this->belongsToMany(Business::class, 'business_category', 'category_id', 'business_id');
+        return $this->belongsToMany(Business::class, 'business_transaction', 'transaction_id', 'business_id');
     }
 }

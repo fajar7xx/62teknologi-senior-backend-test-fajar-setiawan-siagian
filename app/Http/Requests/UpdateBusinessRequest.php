@@ -11,7 +11,7 @@ class UpdateBusinessRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,22 @@ class UpdateBusinessRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            // 'name'          => ['required', 'string'],
+            // 'image'         => ['required', 'image', 'max:512'],
+            // 'is_closed'     => ['required', 'boolean'],
+            // 'lattitude'     => ['required'],
+            // 'longtitude'    => ['required'],
+            // 'price'         => ['required'],
+            // 'phone'         => ['required', 'string'],
+            // 'display_phone' => ['required', 'string'],
+            // 'distance'      => ['required'],
+            // 'address1'      => ['required', 'string'],
+            // 'city'          => ['required', 'string'],
+            // 'zip_code'      => ['required', 'string'],
+            // 'country'       => ['required', 'string'],
+            // 'state'         => ['required', 'string'],
+            // 'categories'    => ['required'],
+            // 'transactions'  => ['required']
         ];
     }
 }

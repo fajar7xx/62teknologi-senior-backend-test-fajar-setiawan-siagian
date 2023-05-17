@@ -14,12 +14,17 @@ return new class extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('business_id')->constrained('businesses');
             $table->string('address1')->nullable();
             $table->string('address2')->nullable();
             $table->string('address3')->nullable();
             $table->string('city');
+            $table->string('zip_code');
             $table->string('country');
+            $table->string('state');
             $table->timestamps();
+
+            $table->index('address1');
         });
         Schema::enableForeignKeyConstraints();
     }

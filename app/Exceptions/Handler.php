@@ -4,6 +4,9 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Validation\UnauthorizedException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Response;
 
 class Handler extends ExceptionHandler
 {
@@ -25,6 +28,25 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             //
+        });
+        // spatie exception
+        $this->renderable(function (UnauthorizedException $e, $request){
+            return response()->json([
+                'message' => 'You dont have the required authorization',
+                'status'  => 403
+            ], Response::HTTP_FORBIDDEN);
+        });
+
+        //Laravel API 404 Error: Customize Exception Message
+        //https://youtu.be/SlBJrLnyoMk
+        $this->renderable(function(NotFoundHttpException $e, $request){
+            //check if api request or not
+            if($request->wantsJson()){
+                return response()->json([
+                    'message' => 'Object not found',
+                    'status'  => 404
+                ], Response::HTTP_NOT_FOUND);
+            }
         });
     }
 }

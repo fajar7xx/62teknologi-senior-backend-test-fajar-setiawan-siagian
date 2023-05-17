@@ -17,7 +17,11 @@ class LocationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'address1' => fake()->streetAddress(),
+            'city'     => fake()->cityPrefix(),
+            'zip_code' => fake()->postcode(),
+            'country'  => fake()->country(),
+            'state'    => fake()->state(),
         ];
     }
 }
